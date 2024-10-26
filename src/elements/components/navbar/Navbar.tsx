@@ -1,30 +1,15 @@
-interface INavbarProps {
-    /**
-     * Elements displayed in Navbar
-     */
-    elements: string[];
+import { INavbarItem, NavbarItem } from './NavbarItem';
+interface INavbar {
+    elements: INavbarItem[];
 }
 
-export default function Navbar({ ...props }: INavbarProps) {
-    const { elements } = props;
-    const navigationList = elements.map((e) => (
-        <li>
-            <a
-                href={`/${e}`}
-                className={[
-                    'hover:text-orange-500',
-                    'dark:hover:text-orange-400'
-                ].join(' ')}
-            >
-                {e}
-            </a>
-        </li>
-    ));
-
+export default function Navbar({ elements }: INavbar) {
     return (
         <nav className={['Navbar'].join(' ')}>
-            <ul className={['flex', 'items-center', 'space-x-8'].join(' ')}>
-                {navigationList}
+            <ul className="flex items-center">
+                {elements.map((element) => (
+                    <NavbarItem key={element.path} {...element} />
+                ))}
             </ul>
         </nav>
     );
