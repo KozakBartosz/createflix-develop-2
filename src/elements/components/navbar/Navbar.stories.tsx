@@ -1,14 +1,29 @@
-import { Meta } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react'
 
-import Navbar from './Navbar';
+import Navbar from './Navbar'
 
 export default {
     title: 'Components/Navbar',
-    component: Navbar
-} as Meta<typeof Navbar>;
+    component: Navbar,
+} as Meta<typeof Navbar>
 
-export const NavigationExample = {
+type Story = StoryObj<typeof Navbar>
+
+export const NavigationExample: Story = {
     args: {
-        elements: ['Movie List', 'Favorites ', 'Instructions']
-    }
-};
+        elements: [
+            {
+                path: '/',
+                title: 'Instructions',
+            },
+            {
+                path: '/movie-list',
+                title: 'Movie List',
+            },
+            {
+                path: '/favorites',
+                title: 'Favorites',
+            },
+        ],
+    },
+}

@@ -1,10 +1,9 @@
-import { Meta } from '@storybook/react';
-
-import AppHeader from './AppHeader';
+import { Meta } from '@storybook/react'
+import AppHeader from './AppHeader'
 
 export default {
     title: 'Components/AppHeader',
-    component: AppHeader
-} as Meta<typeof AppHeader>;
+    component: AppHeader,
+} as Meta<typeof AppHeader>
 
-export const AppHeaderExample = {};
+export const AppHeaderExample = {}

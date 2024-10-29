@@ -1,13 +1,18 @@
-import { Meta } from '@storybook/react';
+import { Meta } from '@storybook/react'
 
-import MovieListItem from './MovieListItem';
+import MovieListItem from './MovieListItem'
 
 export default {
     title: 'Components/MovieListItem',
     argTypes: {
-        posterImage: { control: 'file' }
+        posterImage: { control: 'file' },
     },
-    component: MovieListItem
-} as Meta<typeof MovieListItem>;
+    component: MovieListItem,
+} as Meta<typeof MovieListItem>
 
-export const MovieListItemExample = {};
+export const MovieListItemExample = {
+    args: {
+        title: 'Movie Title',
+        description: 'Movie Description',
+    },
+}

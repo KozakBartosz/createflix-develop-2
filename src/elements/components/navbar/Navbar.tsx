@@ -1,16 +1,16 @@
-import { INavbarItem, NavbarItem } from './NavbarItem';
+import { INavbarItem, NavbarItem } from './NavbarItem'
 interface INavbar {
-    elements: INavbarItem[];
+    elements: INavbarItem[]
 }
 
 export default function Navbar({ elements }: INavbar) {
     return (
-        <nav className={['Navbar'].join(' ')}>
+        <nav className="Navbar">
             <ul className="flex items-center">
                 {elements.map((element) => (
                     <NavbarItem key={element.path} {...element} />
                 ))}
             </ul>
         </nav>
-    );
+    )
 }

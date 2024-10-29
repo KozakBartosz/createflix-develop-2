@@ -2,33 +2,29 @@ interface IHeaderIconProps {
     /**
      * Link to external page
      */
-    link: string;
+    link: string
 
     /**
      * Image used as link icon
      */
-    icon: string;
+    icon: string
 
     /**
      * Description for icon
      */
-    alt?: string;
+    alt?: string
 }
 
 export default function HeaderIcon({ ...props }: IHeaderIconProps) {
-    const { link, icon, alt } = props;
+    const { link, icon, alt } = props
 
     return (
         <a href={link} target="_blank" rel="noreferrer">
-            <img
-                className={['w-10', 'h-auto'].join(' ')}
-                src={icon}
-                alt={alt}
-            />
+            <img className="h-auto w-10" src={icon} alt={alt} />
         </a>
-    );
+    )
 }
 
 HeaderIcon.defaultProps = {
-    alt: ''
-};
+    alt: '',
+}
