@@ -5,6 +5,13 @@ import React from 'react'
 
 const preview: Preview = {
     parameters: {
+        backgrounds: {
+            values: [
+                { name: 'Dark', value: '#0d1117' },
+                { name: 'Light', value: '#fff' },
+            ],
+            default: 'Light',
+        },
         controls: {
             matchers: {
                 color: /(background|color)$/i,

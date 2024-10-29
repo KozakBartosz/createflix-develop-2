@@ -1,23 +1,22 @@
 import { useState } from 'react'
 import { cn } from '../../../lib/utils'
-import { useFavoriteStore } from '../../../store/favoriteState'
+import { Movie } from '../../../store/movieListStore'
 
 type MovieListItemProps = {
-    id: string
-    posterImage: string
-    title: string
-    description: string
+    movie: Movie
+    onAddFavorite: () => void
+    onRemoveFavorite: () => void
+    isFavorite: boolean
 }
 
 export default function MovieListItem({
-    id,
-    posterImage,
-    title,
-    description,
+    movie,
+    onAddFavorite,
+    onRemoveFavorite,
+    isFavorite,
 }: MovieListItemProps) {
-    const { favoriteList, addFavorite, removeFavorite } = useFavoriteStore()
+    const { posterImage, title, description } = movie
     const [clicked, setClicked] = useState(false)
-    const isFavorite = favoriteList.includes(id)
 
     return (
         <article className="h-max bg-white shadow-xl">
@@ -55,10 +54,10 @@ export default function MovieListItem({
                                 aria-label="Like"
                                 onClick={() => {
                                     if (isFavorite) {
-                                        removeFavorite(id)
+                                        onRemoveFavorite()
                                     } else {
                                         setClicked(true)
-                                        addFavorite(id)
+                                        onAddFavorite()
                                     }
                                 }}
                             >

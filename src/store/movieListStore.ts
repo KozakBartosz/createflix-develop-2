@@ -1,41 +1,31 @@
 import { create } from 'zustand'
 
-interface Move {
+export type Movie = {
     id: string
     title: string
-    posterImage: string
+    posterImage?: string
     description: string
 }
 
-interface Store {
-    moveList: Move[] | null
+type Store = {
+    movieList: Movie[]
     loading: boolean
     error: null | string
-    fetchMove: () => void
+    fetchMovie: () => void
 }
 
 type ItunesEntry = {
-    'id': {
-        attributes: {
-            'im:id': string
-        }
-    }
-    'im:name': {
-        label: string
-    }
-    'im:image': {
-        label: string
-    }[]
-    'summary': {
-        label: string
-    }
+    'id': { attributes: { 'im:id': string } }
+    'im:name': { label: string }
+    'im:image': { label: string }[]
+    'summary': { label: string }
 }
 
-export const useMovieListState = create<Store>((set) => ({
-    moveList: null,
+export const useMovieListStore = create<Store>((set) => ({
+    movieList: [],
     loading: false,
     error: null,
-    fetchMove: async () => {
+    fetchMovie: async () => {
         set(() => ({ loading: true }))
 
         if (process.env.NODE_ENV === 'development')
@@ -50,11 +40,11 @@ export const useMovieListState = create<Store>((set) => ({
             const data = itunesData.feed.entry.map((entry: ItunesEntry) => ({
                 id: entry.id.attributes['im:id'],
                 title: entry['im:name'].label,
-                posterImage: entry['im:image'][2].label,
+                posterImage: entry['im:image']?.[2]?.label,
                 description: entry['summary'].label,
             }))
 
-            set(() => ({ moveList: data, loading: false }))
+            set(() => ({ movieList: data, loading: false }))
         } catch {
             set(() => ({ error: 'Failed to download movie list', loading: false }))
         }
